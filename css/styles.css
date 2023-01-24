@@ -28,3 +28,7 @@ p {
     margin-left: 15%;
     margin-right: 80%;
 }
+
+.highlight {
+    background-color: yellow;
+  }
