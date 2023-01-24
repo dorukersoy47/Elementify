@@ -20,5 +20,11 @@ p {
 }
 
 .mainContent {
-    margin: 100px;
+    margin-top: 100px;
+}
+
+.form {
+    display: flex;
+    margin-left: 15%;
+    margin-right: 80%;
 }
