@@ -18,3 +18,7 @@ p {
     text-align: left; 
     color: black;
 }
+
+.mainContent {
+    margin: 100px;
+}
