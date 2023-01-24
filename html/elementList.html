@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/table.css">
     <link rel="stylesheet" href="/css/topnav.css">
     <link rel="stylesheet" href="/css/button.css">
-    <script src="/js/on-off.js"></script>
     <script src="/js/createTable.js"></script>
     <title>Elements</title>
 </head>
@@ -25,6 +24,13 @@
     </div>
 
     <div class="mainContent">
+        <!--Search Bar-->
+        <form class="form">
+            <input type="search" placeholder="Search...">
+            <button type="submit">Search (Name)</button>
+        </form>
+        <div id="results"></div>
+        <script src="/js/search.js"></script>
         <!--Table-->
         <div class="tableContainer" id="elementList"></div>
         <script src="/js/createTable.js"></script>
