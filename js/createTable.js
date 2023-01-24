@@ -1,3 +1,17 @@
+function humanizeKey(key) {
+    switch (key) {
+        case "atomicNumber":
+            return "Atomic Number";
+            break;
+        case "atomicMass":
+            return "Atomic Mass";
+            break;
+        default:
+            return key;
+            break;
+    }
+};
+
 fetch("../json/elementList.json")
     .then(response => response.json()) // Parse the JSON data
     .then(data => {
@@ -15,7 +29,7 @@ fetch("../json/elementList.json")
         // Add table headers
         for (let key in jsonData[0]) {
             headerCell = document.createElement("th");
-            headerCell.innerHTML = key;
+            headerCell.innerHTML = humanizeKey(key);
             headerRow.appendChild(headerCell);
         }
 
