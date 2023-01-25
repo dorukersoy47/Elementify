@@ -59,7 +59,7 @@ function elementify() {
             let result = document.querySelector('#resultElementify');
 
             //Clear the Text
-            result.innerHTML = "";
+            result.innerHTML = " ";
 
             //Diving Input into Array
             const inputArray = [...input];
