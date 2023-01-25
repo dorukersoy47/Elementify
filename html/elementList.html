@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/table.css">
     <link rel="stylesheet" href="/css/topnav.css">
-    <link rel="stylesheet" href="/css/button.css">
     <script src="/js/createTable.js"></script>
     <title>Elements</title>
 </head>
@@ -27,8 +26,14 @@
         <!--Search Bar-->
         <form class="form">
             <input type="search" placeholder="Search...">
-            <button type="submit">Search (Name)</button>
-        </form>
+            <select id="searchType">
+              <option value="name">Name</option>
+              <option value="symbol">Symbol</option>
+              <option value="atomicNumber">Atomic Number</option>
+              <option value="atomicMass">Atomic Mass</option>
+            </select>
+            <button type="submit">Search</button>
+          </form>
         <div id="results"></div>
         <script src="/js/search.js"></script>
         <!--Table-->
