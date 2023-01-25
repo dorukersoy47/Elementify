@@ -7,6 +7,7 @@
     <title>Elementify</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel= "stylesheet" href="/css/topnav.css">
+    <link rel="stylesheet" href="/css/elementify.css">
     <link rel="icon" type="image/chemical_icon" href="/images/chemical_icon.png">
 </head>
 <body>
@@ -17,10 +18,27 @@
     </nav>
     
     <div class="mainContent">
-    <!--About-->
+        <!--About-->
         <div>
             <h1>Elementify</h1>
-            <p>Elementify is a converter that converts words into chemical compounds if possible.</p>
+            <p>Elementify is a converter that converts words into chemical compounds through the symbols of elements. (if possible)</p>
+        </div>
+        <!--Elementify Input-->
+        <div>
+            <form class="form">
+                <input placeholder="Write a name..." autocomplete=off type="text" class="input" id="elementifyInput">
+                <button class="button" type="button" onclick="elementify()"><b>ELEMENTIFY!</b></button>
+            </form>
+            <script>
+                document.addEventListener("keydown", function(event) {
+                  if (event.code === "Enter" || event.code === "NumpadEnter") {
+                    event.preventDefault();
+                    document.getElementById("submitBtn").click();
+                  }
+                });
+              </script>
+            <div id="resultElementify"></div>
+            <script src="/js/elementify.js"></script>
         </div>
     </div>
 </body>
