@@ -1,14 +1,14 @@
-fetch("../json/elementList.json")
+const input = document.getElementById("searchInput");
+input.addEventListener("input", function (event) {
+    event.preventDefault();
+
+    fetch("../json/elementList.json")
     .then(response => response.json())
     .then(data => {
-    // Listen for the form's submit event
-    const form = document.querySelector('form');
-    form.addEventListener('submit', event => {
-        event.preventDefault();
-        const searchValue = form.querySelector('input').value;
+        const searchValue = input.value;
         const resultsDiv = document.querySelector('#results');
         
-        if (searchValue != "") {document.getElementById("elementList").style.display = "none";}
+        if (searchValue != "") { document.getElementById("elementList").style.display = "none"; }
 
         // Clear the table before every new search
         resultsDiv.innerHTML = "";
@@ -26,28 +26,28 @@ fetch("../json/elementList.json")
             headerCell.innerHTML = humanizeKey(key);
             headerRow.appendChild(headerCell);
         }
- 
+
         //Gettng Search Type & Defining Variables
         let searchType = document.getElementById("searchType").value;
         let filteredData;
-        let row;
+
         //Switch Statement for Search Type
         switch (searchType) {
             case "name":
                 filteredData = data.filter(item => item.Name.toLowerCase().includes(searchValue.toLowerCase()));
 
                 filteredData.forEach(result => {
-                let row = table.insertRow();
-                for (let key in result) {
-                    let cell = row.insertCell(-1);
-                    if (key == 'Name') {
-                        cell.innerHTML = result[key].replace(new RegExp(searchValue, 'gi'),
-                                         match => `<span class="highlight">${match}</span>`);
+                    let row = table.insertRow();
+                    for (let key in result) {
+                        let cell = row.insertCell(-1);
+                        if (key == 'Name') {
+                            cell.innerHTML = result[key].replace(new RegExp(searchValue, 'gi'),
+                                match => `<span class="highlight">${match}</span>`);
+                        }
+                        else {
+                            cell.innerHTML = result[key];
+                        }
                     }
-                    else {
-                    cell.innerHTML = result[key];
-                    }
-                }
                 });
                 break;
             
@@ -60,14 +60,15 @@ fetch("../json/elementList.json")
                         let cell = row.insertCell(-1);
                         if (key == 'Symbol') {
                             cell.innerHTML = result[key].replace(new RegExp(searchValue, 'gi'),
-                                            match => `<span class="highlight">${match}</span>`);
+                                match => `<span class="highlight">${match}</span>`);
                         }
                         else {
-                        cell.innerHTML = result[key];
+                            cell.innerHTML = result[key];
                         }
                     }
                 });
                 break;
+            
             case "atomicNumber":
                 if (searchValue === "") {
                     filteredData = data;
@@ -83,6 +84,7 @@ fetch("../json/elementList.json")
                     }
                 });
                 break;
+            
             case "atomicMass":
                 if (searchValue === "") {
                     filteredData = data;
@@ -92,17 +94,17 @@ fetch("../json/elementList.json")
                 
 
                 filteredData.forEach(result => {
-                let row = table.insertRow();
-                for (let key in result) {
-                    let cell = row.insertCell(-1);
-                    if (key == 'atomicMass') {
-                        cell.innerHTML = result[key].toString().replace(new RegExp(searchValue, 'gi'),
-                                         match => `<span class="highlight">${match}</span>`);
+                    let row = table.insertRow();
+                    for (let key in result) {
+                        let cell = row.insertCell(-1);
+                        if (key == 'atomicMass') {
+                            cell.innerHTML = result[key].toString().replace(new RegExp(searchValue, 'gi'),
+                                match => `<span class="highlight">${match}</span>`);
+                        }
+                        else {
+                            cell.innerHTML = result[key];
+                        }
                     }
-                    else {
-                    cell.innerHTML = result[key];
-                    }
-                }
                 });
                 break;
         }
@@ -110,4 +112,5 @@ fetch("../json/elementList.json")
         // Append the table to the results div
         resultsDiv.appendChild(table);
     });
-  });
+});
+
