@@ -4,19 +4,27 @@
     height: 69px;
     padding: 0;
     border: 3px solid black;
+    outline: none;
 
+    padding-left: 10px;
     text-align: left;
     font-family: sans-serif;
     font-size: 20px;
-    outline: none;
+}
+
+.input::placeholder {
+    padding-left: 10px;
+    text-align: left;
+    font-family: sans-serif;
+    font-size: 20px;
 }
 
 
 .button {
     background-color: green;
+    color: white;
     width: 250px;
     height: 75px;
-    padding: 0;
     border: 3px solid black;
 
     text-align: center;
@@ -32,4 +40,27 @@
     margin-right: auto;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.message {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 20px;
+    border: 3px solid black;
+    width: 50%;
+}
+
+.valid {
+    background-color: rgb(74, 150, 74);
+    padding: 50px;
+}
+
+.invalid {
+    background-color: rgb(164, 60, 60);
+    padding: 30px;
+}
+
+.zort {
+    background-color: rgb(187, 187, 65);
+    padding: 50px;
 }
