@@ -25,15 +25,14 @@
     <div class="mainContent">
         <!--Search Bar-->
         <form class="form">
-            <input type="search" placeholder="Search...">
+            <input type="input" autocomplete="off" placeholder="Search..." id="searchInput">
             <select id="searchType">
-              <option value="name">Name</option>
-              <option value="symbol">Symbol</option>
-              <option value="atomicNumber">Atomic Number</option>
-              <option value="atomicMass">Atomic Mass</option>
+                <option value="name">Name</option>
+                <option value="symbol">Symbol</option>
+                <option value="atomicNumber">Atomic Number</option>
+                <option value="atomicMass">Atomic Mass</option>
             </select>
-            <button type="submit">Search</button>
-          </form>
+        </form>
         <div id="results"></div>
         <script src="/js/search.js"></script>
         <!--Table-->
