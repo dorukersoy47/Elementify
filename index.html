@@ -22,12 +22,13 @@
         <div>
             <h1>Elementify</h1>
             <p>Elementify is a converter that converts words into chemical compounds through the symbols of elements. (if possible)</p>
+            <p style="color: red">NOTE: The letter 'j' isn't present in the whole element table</p>
         </div>
         <!--Elementify Input-->
         <div>
-            <form class="form">
+            <form style="width:81%" class="form">
                 <input placeholder="Write a name..." autocomplete=off type="text" class="input" id="elementifyInput">
-                <button class="button" type="button" onclick="elementify()"><b>ELEMENTIFY!</b></button>
+                <button class="button" type="button" onclick="elementify()">ELEMENTIFY!</button>
             </form>
             <script>
                 document.addEventListener("keydown", function(event) {
@@ -37,7 +38,7 @@
                   }
                 });
               </script>
-            <div id="resultElementify"></div>
+            <div style="display: flex; justify-content: center; align-items: center;"id="resultElementify"></div>
             <script src="/js/elementify.js"></script>
         </div>
     </div>
