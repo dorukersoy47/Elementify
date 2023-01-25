@@ -1,3 +1,16 @@
+function formatValid(p, elementArray, result) {
+    p.innerHTML += "Name(s):" + elementArray.map(item => item.Name).join(" ");
+    p.innerHTML += " (" + elementArray.map(item => item.Symbol).join("") + ")";
+    result.appendChild(p);
+}
+
+function formatInvalid(p, elementArray, result) {
+    p.innerHTML += "Invalid Input";
+    p.innerHTML += "Name(s):" + elementArray.map(item => item.Name).join(" ");
+    p.innerHTML += " (" + elementArray.map(item => item.Symbol).join("") + ")";
+    result.appendChild(p);
+}
+
 function elementify() {
     //Assign Input
     let input = document.getElementById('elementifyInput').value;
@@ -25,18 +38,7 @@ function elementify() {
 
 
             while (index < inputArray.length) {
-                if (index == inputArray.length - 1) {
-                    let str = inputArray[index];
-                    let filtered = data.filter(item => item.Symbol.toLowerCase() == str.toLowerCase());
-                    if (filtered.length > 0) {
-                        elementArray.push(filtered[0]);
-                        index += 1;
-                    }
-                    else {
-                        p.innerHTML += "Invalid Input";
-                        break;
-                    }
-                } else {
+                if (inputArray.length - index > 2) {
                     let twostr = inputArray[index] + inputArray[index + 1];
                     let filtered = data.filter(item => item.Symbol.toLowerCase() == twostr.toLowerCase());
 
@@ -51,15 +53,47 @@ function elementify() {
                             index += 1;
                         }
                         else {
-                            p.innerHTML += "Invalid Input";
+                            formatInvalid(p, elementArray, result);
                             break;
                         }
                     }
+                } else {
+                    if (index == inputArray.length - 1) {
+                        let str = inputArray[index];
+                        let filtered = data.filter(item => item.Symbol.toLowerCase() == str.toLowerCase());
+                        if (filtered.length > 0) {
+                            elementArray.push(filtered[0]);
+                            index += 1;
+                            formatValid(p, elementArray, result);
+                        }
+                        else {
+                            formatInvalid(p, elementArray, result);
+                            break;
+                        }
+                    }
+                    else if (index == inputArray.length - 2) {
+                        let twostr = inputArray[index] + inputArray[index + 1];
+                        let filtered = data.filter(item => item.Symbol.toLowerCase() == twostr.toLowerCase());
+
+                    if (filtered.length > 0) {
+                        elementArray.push(filtered[0]);
+                        index += 2;
+                        formatValid(p, elementArray, result);
+                    } else {
+                        let str = inputArray[index];
+                        let filtered = data.filter(item => item.Symbol.toLowerCase() == str.toLowerCase());
+                        if (filtered.length > 0) {
+                            elementArray.push(filtered[0]);
+                            index += 1;
+                            formatValid(p, elementArray, result);
+                        }
+                        else {
+                            formatInvalid(p, elementArray, result);
+                            break;
+                        }
+                    }
+                    }
                 }
             }
-
-            p.innerHTML += "Name(s):" + elementArray.map(item => item.Name).join(" ");
-            p.innerHTML += " (" + elementArray.map(item => item.Symbol).join("") + ")";
-            result.appendChild(p);
         });
 }
