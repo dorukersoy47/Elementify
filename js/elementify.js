@@ -6,14 +6,14 @@ function formatValid(p, elementArray, result) {
         massSum += item.atomicMass;
     }
     
-    p.classList.add("valid");
+    p.classList.add("valid"); 
     p.classList.add("message")
 
     p.innerHTML += "What an ELEMENTIFYABLE name. <br></br> Here's what I got: <br></br> ";
     p.innerHTML += "<b>Name(s):</b> " + elementArray.map(item => item.Name).join(" ");
     p.innerHTML += "<br></br> <b>Symbols: </b>" + elementArray.map(item => item.Symbol).join("");
-    p.innerHTML += "<br></br> <b>Total Atomic Number: </b>" + elementArray.map(item => item.atomicNumber).join(" + ") + " = " +numberSum;
-    p.innerHTML += "<br></br> <b>Total Atomic Mass: </b>" + elementArray.map(item => item.atomicMass).join(" + ") + " = " +massSum;
+    p.innerHTML += "<br></br> <b>Total Atomic Number: </b>" + elementArray.map(item => item.atomicNumber).join(" + ") + " = " + numberSum;
+    p.innerHTML += "<br></br> <b>Total Atomic Mass: </b>" + elementArray.map(item => item.atomicMass).join(" + ") + " = " + massSum;
     result.appendChild(p);
 }
 
@@ -33,8 +33,8 @@ function formatInvalid(p, elementArray, result) {
         p.innerHTML += "The name is incomplete but don't worry everybody has flaws. <br></br> Here's what I got: <br></br> ";
         p.innerHTML += "<b>Name(s):</b> " + elementArray.map(item => item.Name).join(" ");
         p.innerHTML += "<br></br> <b>Symbols: </b>" + elementArray.map(item => item.Symbol).join("");
-        p.innerHTML += "<br></br> <b>Total Atomic Number: </b>" + numberSum;
-        p.innerHTML += "<br></br> <b>Total Atomic Mass: </b>" + massSum;
+        p.innerHTML += "<br></br> <b>Total Atomic Number: </b>" + elementArray.map(item => item.atomicNumber).join(" + ") + " = " + numberSum;
+        p.innerHTML += "<br></br> <b>Total Atomic Mass: </b>" + elementArray.map(item => item.atomicMass).join(" + ") + " = " + massSum;
         result.appendChild(p);
     } else {
         p.classList.add("invalid");
@@ -119,7 +119,9 @@ function elementify() {
                             if (filtered.length > 0) {
                                 elementArray.push(filtered[0]);
                                 index += 1;
-                                formatValid(p, elementArray, result);
+                                if (index == result.length - 1) {
+                                    formatValid(p, elementArray, result);
+                                }
                             }
                             else {
                                 formatInvalid(p, elementArray, result);
