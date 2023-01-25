@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/table.css">
     <link rel="stylesheet" href="/css/topnav.css">
+    <link rel="stylesheet" href="/css/elementList.css">
     <script src="/js/createTable.js"></script>
     <title>Elements</title>
 </head>
@@ -33,6 +34,14 @@
                 <option value="atomicMass">Atomic Mass</option>
             </select>
         </form>
+        <script>
+            document.addEventListener("keydown", function(event) {
+              if (event.code === "Enter" || event.code === "NumpadEnter") {
+                event.preventDefault();
+                document.getElementById("submitBtn").click();
+              }
+            });
+          </script>
         <div id="results"></div>
         <script src="/js/search.js"></script>
         <!--Table-->
