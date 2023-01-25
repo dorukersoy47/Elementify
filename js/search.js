@@ -2,6 +2,12 @@ const input = document.getElementById("searchInput");
 input.addEventListener("input", function (event) {
     event.preventDefault();
 
+    input.addEventListener("keydown", function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+        }
+    });
+
     fetch("../json/elementList.json")
     .then(response => response.json())
     .then(data => {
