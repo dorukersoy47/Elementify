@@ -13,9 +13,6 @@ fetch("../json/elementList.json")
         // Clear the table before every new search
         resultsDiv.innerHTML = "";
 
-        // Filter the data based on the search value
-        const filteredData = data.filter(item => item.Name.toLowerCase().includes(searchValue.toLowerCase()));
-
         // Create a table element
         const table = document.createElement('table');
         table.classList.add("table");
@@ -29,21 +26,86 @@ fetch("../json/elementList.json")
             headerCell.innerHTML = humanizeKey(key);
             headerRow.appendChild(headerCell);
         }
+ 
+        //Gettng Search Type & Defining Variables
+        let searchType = document.getElementById("searchType").value;
+        let filteredData;
+        let row;
+        //Switch Statement for Search Type
+        switch (searchType) {
+            case "name":
+                filteredData = data.filter(item => item.Name.toLowerCase().includes(searchValue.toLowerCase()));
 
-        // Add rows to the table for each search result
-        filteredData.forEach(result => {
-        const row = table.insertRow();
-            for (let key in result) {
-                let cell = row.insertCell(-1);
-                if (key == 'Name') {
-                    cell.innerHTML = result[key].replace(new RegExp(searchValue, 'gi'),
-                        match => `<span class="highlight">${match}</span>`);
-                }
-                else {
+                filteredData.forEach(result => {
+                let row = table.insertRow();
+                for (let key in result) {
+                    let cell = row.insertCell(-1);
+                    if (key == 'Name') {
+                        cell.innerHTML = result[key].replace(new RegExp(searchValue, 'gi'),
+                                         match => `<span class="highlight">${match}</span>`);
+                    }
+                    else {
                     cell.innerHTML = result[key];
+                    }
                 }
-            }
-        });
+                });
+                break;
+            
+            case "symbol":
+                filteredData = data.filter(item => item.Symbol.toLowerCase().includes(searchValue.toLowerCase()));
+
+                filteredData.forEach(result => {
+                    const row = table.insertRow();
+                    for (let key in result) {
+                        let cell = row.insertCell(-1);
+                        if (key == 'Symbol') {
+                            cell.innerHTML = result[key].replace(new RegExp(searchValue, 'gi'),
+                                            match => `<span class="highlight">${match}</span>`);
+                        }
+                        else {
+                        cell.innerHTML = result[key];
+                        }
+                    }
+                });
+                break;
+            case "atomicNumber":
+                if (searchValue === "") {
+                    filteredData = data;
+                } else {
+                    filteredData = data.filter(item => item.atomicNumber == searchValue);
+                }
+
+                filteredData.forEach(result => {
+                    const row = table.insertRow();
+                    for (let key in result) {
+                        let cell = row.insertCell(-1);
+                        cell.innerHTML = result[key];
+                    }
+                });
+                break;
+            case "atomicMass":
+                if (searchValue === "") {
+                    filteredData = data;
+                } else {
+                    filteredData = data.filter(item => item.atomicMass.toString().includes(searchValue.toString()));
+                }
+                
+
+                filteredData.forEach(result => {
+                let row = table.insertRow();
+                for (let key in result) {
+                    let cell = row.insertCell(-1);
+                    if (key == 'atomicMass') {
+                        cell.innerHTML = result[key].toString().replace(new RegExp(searchValue, 'gi'),
+                                         match => `<span class="highlight">${match}</span>`);
+                    }
+                    else {
+                    cell.innerHTML = result[key];
+                    }
+                }
+                });
+                break;
+        }
 
         // Append the table to the results div
         resultsDiv.appendChild(table);
